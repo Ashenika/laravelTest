@@ -16,14 +16,25 @@
 </head>
 
 <style>
-    th,td,table{
-        color: black;
-        padding: 5px;
-        border-style: solid;
-        border-color: black;
+    table {
+        border-collapse: collapse;
+        width: 100%;
     }
 
-    a{
+    table td, table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    table tr{background-color: #f2f2f2;}
+
+    table tr:hover {background-color: #ddd;}
+
+    table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #f7f7f7;
         color: black;
     }
 </style>
@@ -42,23 +53,25 @@
                                 <th>Transaction Date</th>
                                 <th>Transffered To</th>
                                 <th>Amount</th>
-                                <th>Balance</th>
-                            </tr>
 
+                            </tr>
+                            @if($transactions)
                                 @foreach($transactions as $key => $value)
                                 <?php
                                     $total_transactions =0;
                                     $total_transactions += $value->amount;
                                 ?>
                                 <tr>
-                                    <td>{{$key}}</td>
+                                    <td>{{$key+1}}</td>
                                     <td>{{$value->created_at}}</td>
-                                    <td>{{$value->sender_id}}</td>
+                                    <td>{{$value->sender->name}}</td>
                                     <td>{{$value->amount}}</td>
-                                    <td>{{$account_details->amount - $total_transactions}}</td>
+
                                 </tr>
                                 @endforeach
-
+                            @else
+                                <tr><td>No data</td></tr>
+                            @endif
 
                         </table>
                     </div>
