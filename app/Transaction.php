@@ -21,4 +21,8 @@ class Transaction extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    public function sender() {
+        return $this->belongsTo('App\User', 'sender_id', 'id');
+    }
 }

@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Account;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -51,10 +52,18 @@ class LoginController extends Controller {
 
         $form = User::create([
             'mobile_no'     => $request->get('mobile_no'),
-            'name'        => $request->get('name'),
+            'name'          => $request->get('name'),
         ]);
 
         $form->save();
+
+        if($form){
+            $account = Account::create([
+                'user_id'    => $form->id,
+                'mobile_no'  => $form->mobile_no,
+                'amount'     => 5000,
+            ]);
+        }
 
         if($form){
             return redirect("login");
