@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2020 at 09:32 AM
+-- Generation Time: Sep 11, 2020 at 04:45 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -32,15 +32,18 @@ CREATE TABLE `account` (
   `user_id` int(100) NOT NULL,
   `mobile_no` int(100) NOT NULL,
   `amount` double NOT NULL,
-  `balance` double NOT NULL
+  `balance` double NOT NULL DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `user_id`, `mobile_no`, `amount`, `balance`) VALUES
-(1, 1, 774155518, 5000, 0);
+INSERT INTO `account` (`id`, `user_id`, `mobile_no`, `amount`, `balance`, `created_at`, `updated_at`) VALUES
+(1, 1, 774155518, 5000, 5000, NULL, NULL),
+(4, 9, 778437648, 5000, 3940, '2020-09-11 14:07:16', '2020-09-11 14:07:16');
 
 -- --------------------------------------------------------
 
@@ -63,16 +66,12 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `user_id`, `sender_id`, `amount`, `balance`, `created_at`, `updated_at`) VALUES
-(1, 0, 4, 50, NULL, '2020-09-10 06:19:26', '2020-09-10 06:19:26'),
-(2, 0, 4, 50, NULL, '2020-09-10 06:20:55', '2020-09-10 06:20:55'),
-(3, 0, 4, 60, NULL, '2020-09-10 06:21:19', '2020-09-10 06:21:19'),
-(4, 0, 4, 60, NULL, '2020-09-10 06:21:37', '2020-09-10 06:21:37'),
-(5, 0, 4, 60, NULL, '2020-09-10 06:22:16', '2020-09-10 06:22:16'),
-(6, 0, 4, 60, NULL, '2020-09-10 06:22:44', '2020-09-10 06:22:44'),
 (7, 1, 4, 560, NULL, '2020-09-10 06:44:18', '2020-09-10 06:44:18'),
 (8, 1, 4, 560, NULL, '2020-09-10 06:45:10', '2020-09-10 06:45:10'),
 (9, 1, 4, 560, NULL, '2020-09-10 06:45:30', '2020-09-10 06:45:30'),
-(10, 1, 4, 560, NULL, '2020-09-10 06:46:15', '2020-09-10 06:46:15');
+(10, 1, 4, 560, NULL, '2020-09-10 06:46:15', '2020-09-10 06:46:15'),
+(13, 9, 1, 500, NULL, '2020-09-11 14:08:58', '2020-09-11 14:08:58'),
+(14, 9, 4, 560, NULL, '2020-09-11 14:16:59', '2020-09-11 14:16:59');
 
 -- --------------------------------------------------------
 
@@ -94,7 +93,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `mobile_no`, `name`, `created_at`, `updated_at`) VALUES
 (1, 774155518, 'Asheni Perera', '2020-09-10 05:17:43', '2020-09-10 05:17:43'),
-(4, 774155519, 'Asheni', '2020-09-10 05:31:18', '2020-09-10 05:31:18');
+(4, 774155519, 'Asheni', '2020-09-10 05:31:18', '2020-09-10 05:31:18'),
+(9, 778437648, 'Chinthana', '2020-09-11 14:07:16', '2020-09-11 14:07:16');
 
 --
 -- Indexes for dumped tables
@@ -126,19 +126,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
